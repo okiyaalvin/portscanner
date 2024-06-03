@@ -2,15 +2,15 @@ import socket
 from IPy import IP
 
 def scan(target):
-    converted_ip =check_ip(target)
-    print('\n' + '[-_0 Scanning target]' + str(target))
-    for port in range(20, 60):
+    converted_ip = check_ip(target)
+    print('\n' + '[-_0Scanning Target ' + str(target))
+    for port in range(19, 85):
         scan_port(converted_ip, port)
 
 def check_ip(ip):
     try:
         IP(ip)
-        return (ip)
+        return(ip)
     except ValueError:
         return socket.gethostbyname(ip)
 
@@ -24,14 +24,14 @@ def scan_port(ipaddress, port):
         sock.connect((ipaddress, port))
         try:
             banner = get_banner(sock)
-            print('[+] Open port' + str(port) +':' +str(banner.decode().strip('\n')))
+            print('[+] Open Port ' + str(port) + ' : ' + str(banner.decode().strip('\n')))
         except:
-            print('[+] Open port ' + str(port))
+            print('[+] Open Port ' + str(port))
     except:
         pass
 
 
-targets = input('[+] Enter Target/s to scan (split multiple targets with ,): ')
+targets = input('[+] Enter Target/s to Scan(Split multiple targets with , ): ')
 if ',' in targets:
     for ip_add in targets.split(','):
         scan(ip_add.strip(' '))
